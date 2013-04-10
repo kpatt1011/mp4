@@ -54,8 +54,8 @@ using namespace std;
 	Thanks :)
 	*/
 
-class Semaphore {
-private:
+struct Semaphore {
+
   /* -- INTERNAL DATA STRUCTURES
      You may need to change them to fit your implementation. */
 
@@ -63,26 +63,17 @@ private:
   pthread_mutex_t m;
   pthread_cond_t  c;
 
-public:
-
-  /* -- CONSTRUCTOR/DESTRUCTOR */
-
-  Semaphore(int _val);
+  Semaphore(int _val); // Constructor
 	
-	Semaphore();
+  Semaphore(); // Default Constructor
 
-  ~Semaphore();
+  ~Semaphore(); // Destructor
 
   /* -- SEMAPHORE OPERATIONS */
-
-  // P is also known as wait()
-  // Decrements the semaphore S
-  int P();
   
-  // V increments the semaphore S
-  // V is also known as signal()
-  int V();
-	
+  int P(); // Decrements the semaphore S, P is also known as wait()
+  
+  int V();  // V increments the semaphore S, also known as signal()
 };
 
   Semaphore::Semaphore(int _val) {
@@ -106,9 +97,9 @@ public:
   */
   int Semaphore::P() {
 	
-	// pthread_mutex_lock protect the critical region that is the memory segment for the value
 	
-		pthread_mutex_lock( &m ); 
+	
+		pthread_mutex_lock( &m );  // pthread_mutex_lock protect the critical region that is the memory segment for the value
 	
 			value--;
 		
@@ -131,10 +122,8 @@ public:
   semaphores waiting queue to the ready queue
   */
   int Semaphore::V() {
-  
-	// pthread_mutex_lock protect the critical region that is the memory segment for the value
 	
-		pthread_mutex_lock(&m);
+		pthread_mutex_lock(&m); // protects the critical region that is the memory segment for the value
 			
 			value++; // Increment the value
 			
@@ -152,10 +141,10 @@ public:
 	
 	
 	
-	/* A statistics class where a histogram is represented by an array of integers.
-	 where the index in the array represents the value, and the actual value represents
-	 the frequency
-	 */
+/* A statistics class where a histogram is represented by an array of integers.
+	where the index in the array represents the value, and the actual value represents
+	the frequency
+*/
 class Statistics {
 	public:
 			vector<int> histogram;
@@ -167,7 +156,6 @@ class Statistics {
 			void print_histogram();
 			
 			void print_histogram_to_file(ofstream &file);
-
 };
 
 Statistics::Statistics(int size) {
@@ -182,19 +170,28 @@ void Statistics::print_histogram() {
 	for(int i=0; i < this->histogram.size(); i++) {
 		cout<<  "Index:" << i <<"  Frequency:"<< histogram[i] <<"\n"; 
 	}
-	
 }
 
 void Statistics::print_histogram_to_file(ofstream &file) {
 
 			for(int i=0; i < this->histogram.size(); i++) {
 				file<<  "Index:" << i <<"  Frequency:"<< histogram[i] <<"\n"; 
-			}
-			
-	}
+			}	
+}
 
 
 
+/* Class provides two functions that return the read and write file
+descriptor of the request channel, respectivley. These file descriptors can be used 
+to monitor activity on the request channel.
+
+If activity has been detected on the read file descriptor, the code 
+may then read the data either by accessing RequestChannel::cread() or by
+reading directly from the file descriptor returned by RequestChannel::read_fs()
+
+Similarly the next request can be sent to the request channel using RequestChannel::cwrite()
+or by writing to file descriptor specified by RequestChannel::write_fs()
+*/
 
 
 /*--------------------------------------------------------------------------*/
@@ -202,7 +199,8 @@ void Statistics::print_histogram_to_file(ofstream &file) {
 /*--------------------------------------------------------------------------*/
 		int* num_data_request;
 		int* bounded_buf_size;
-    int* num_worker_threads;
+    	int* num_request_channels;
+
 		
 		bool keep_going; // Global variable to signal when program should halt
 		int total_count; // The total number of request put into all of the histograms (cummulative) 
@@ -222,14 +220,50 @@ void Statistics::print_histogram_to_file(ofstream &file) {
 		
 		stack<string> request_stack; // Used for communication between request threads and worker threads
 		stack<string> stats_stack; // Used for communication between worker threads and statistics threads
+		vector<RequestChannel*> rChannels;
+		
 
+void *event_handler(void *arg) {
+
+	keep_going=true;
+	fd_set readset;
+	fd_set writeset;
+
+
+	for(int i=0; i < *num_request_channels; i++) {
+
+		string shit = rChannels[i]->name();
+		cout <<"\n" << shit << "   "  << i << "\n";
+
+		/*cout<<"\nGOT HERE \n";
+		int h = rChannels.size();;
+		cout<< "\n" << h << "\n";
+		int rfd = rChannels[i]->read_fd();
+		int wfd = rChannels[i]->write_fd();
 		
+		FD_SET(rfd, &readset);
+		FD_SET(wfd, &writeset);
+		*/
+	}
+
+
+	while(keep_going) {
 		
+		int highest_fd = rChannels[*num_request_channels]->read_fd();
+		highest_fd++; // Increase it to one more than the largest file descriptor
+		int selected = select(highest_fd, &readset, &writeset, NULL, NULL);
+		
+		cout<<"\nThe Event Handler Selected: " << selected << "\n";
+
+	}	
+
+}
 		
 
 // Implementation of a request thread
 void *request_thread(void *arg) {
 		
+
 		 
 			
 		string* request_name = (string*) arg;
@@ -250,8 +284,8 @@ void *request_thread(void *arg) {
 // Implementation of a statistics thread
 void *statistics_thread(void *arg) {
 	
-					
-				while(keep_going) {
+
+		/*		while(keep_going) {
 				
 					string reply;
 					string request;
@@ -297,12 +331,9 @@ void *statistics_thread(void *arg) {
 					
 					total_count++;
 					
-				}
-				 
-					
-		 
-				
+				}	
 			}
+			*/
 }
 
 // Implementation of a worker thread
@@ -334,9 +365,18 @@ void *worker_thread(void *arg){
 			} // End of if statement
 		}
 		
-		string last_reply = worker->send_request("quit"); // Quit the request channel of the worker thread
-		
+		string last_reply = worker->send_request("quit"); // Quit the request channel of the worker thread	
 }
+
+/* 
+client -n -b -w
+
+-n <number of data requests per a person>
+
+-b <size of bounded buffer in request>
+
+-w <number of request channels to be handled by event handler thread>
+*/
 
 /*MAIN FUNCTION*/
 int main(int argc, char * argv[]) {
@@ -356,8 +396,8 @@ int main(int argc, char * argv[]) {
 			int bb = atoi(argv[2]);
 			bounded_buf_size = &bb;
 			
-			int wt=atoi(argv[3]);
-			num_worker_threads = &wt;
+			int w=atoi(argv[3]);
+			num_request_channels = &w;
 		
 		
 			// Instantiate the required fillcount and emptycount semaphores to solve consumer/producer problem amongst the threads
@@ -396,8 +436,8 @@ int main(int argc, char * argv[]) {
 	
 	int error;
 	
-	error = pthread_create(&jane, NULL, request_thread, (void*) &jas  );
-	
+	//error = pthread_create(&jane, NULL, request_thread, (void*) &jas  );
+	/*
 	if(error != 0) {
 		perror("\nUnable to create request thread for JANE\n");
 	}
@@ -411,22 +451,53 @@ int main(int argc, char * argv[]) {
 	if(error != 0) {
 		perror("\nUnable to create request thread for JOHN\n");
 	}
-	
-	
+	*/
+
+	// Create the designated number of RequestChannels, and add them to the array of RequestChannels
+	for(int i =0; i < *num_request_channels; i++) {
+
+		string name = chan->send_request("newthread"); // Request a new RequestChannel on the server
+		RequestChannel* a= new RequestChannel(name, RequestChannel::CLIENT_SIDE);
+		
+		rChannels.push_back(a);
+
+	}
+
+
+
+	pthread_t eventHandler;
+
+	error = pthread_create(&eventHandler, NULL, event_handler, NULL); 
+
+	if(error != 0) {
+		perror("\nUnable to create event handler thread\n");
+	}
+
+
+	usleep(200000);  // Sleep to allow adequate time for chan to connect
+
+	//string fuck = rChannels[3]->name();
+	//string fuck = rChannels[0]->name();
+	//cout << "\n" << fuck << "\n";
+	//rChannels[5]->cwrite("Testing if this worked");
+	string fuck = rChannels[0]->cread();
+	cout << "\n" << fuck << "\n";
 
 	// Create worker threads
 	
-	for(int i =0; i < *num_worker_threads; i++) {
+	//for(int i =0; i < *num_worker_threads; i++) {
 	
-				pthread_t worker; // Declare worker thread
+			//	pthread_t worker; // Declare worker thread
 				
-				error = pthread_create(&worker, NULL, worker_thread, NULL);
+			//	error = pthread_create(&worker, NULL, worker_thread, NULL);
 				
-				if(error != 0) {
-					perror("\nUNABLE TO CREATE A WORKER THREAD");
-				}
-	}
+			//	if(error != 0) {
+			//		perror("\nUNABLE TO CREATE A WORKER */THREAD");
+			//	}
+//	}
 	
+	
+	/*
 	// Create statistics threads
 	pthread_t janeStat;
 	pthread_t joeStat;
@@ -453,7 +524,7 @@ int main(int argc, char * argv[]) {
 	// Print histogram results into a file to check for accuracy.
 	int stat_round = 1;
 	ofstream myfile;
-	myfile.open ("stats.txt");
+	//myfile.open ("stats.txt");
 	
 	while(keep_going) {
 		usleep(20000000);  // Sleep to allow adequate time for chan to connect
@@ -479,10 +550,11 @@ int main(int argc, char * argv[]) {
 		
 	}
 	myfile.close(); // Close the statistics log file
-	
+*/	
 	string reply4 = chan->send_request("quit"); // Quit the chan request channel
 
 	}
 
 
 }
+

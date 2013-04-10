@@ -1,0 +1,286 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+			[
+				"jinj",
+				"Set Syntax: HTML (Jinja Templates)"
+			],
+			[
+				"jija",
+				"Set Syntax: HTML (Jinja Templates)"
+			],
+			[
+				"jin",
+				"Set Syntax: HTML (Jinja Templates)"
+			],
+			[
+				"ji",
+				"Set Syntax: HTML (Jinja Templates)"
+			],
+			[
+				"jinja",
+				"Set Syntax: HTML (Jinja Templates)"
+			],
+			[
+				"ip",
+				"Package Control: Install Package"
+			],
+			[
+				"IP",
+				"Package Control: Install Package"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			]
+		],
+		"width": 499.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/ask_form.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/media/style/question.less",
+		"//ubuntu/keith/askags/askbot/skins/askags/media/style/style.less",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/search_bar.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/tags/header.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/logo.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/header.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/two_column_body.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/secondary_header.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/main_page/secondary_header_main.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/ask_button.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/question/new_answer_form.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/footer.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/question_edit_tips.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/question_summary.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/question_edit.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/answer_edit.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/markdown_help.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/widgets/edit_post.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/meta/editor_data.html",
+		"//ubuntu/keith/askags/settings_shared.py",
+		"//ubuntu/keith/askags/tmpdata.yaml",
+		"//ubuntu/keith/askags/fixtures/initial_data.yaml",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/question.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/faq_static.html",
+		"//ubuntu/keith/askags/urls.py",
+		"//ubuntu/keith/askags/askbot/doc/source/devel/askbot.urls.rst",
+		"//ubuntu/keith/askags/askbot/doc/source/devel/askbot.conf.forum_data_rules.rst",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/404.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/ask.html",
+		"//ubuntu/keith/askags/askbot/skins/askags/templates/ask_widget_complete.html",
+		"/C/Users/Keith/Documents/csce315/Team31Database/Team31Database/apidocumentation.txt",
+		"//ubuntu/keith/csce313/MP1_Source/Code_Handout_Shared/my_allocator.c",
+		"//ubuntu/keith/csce313/MP1_Source/Code_Handout_Shared/my_allocator.h",
+		"//ubuntu/keith/csce313/MP1_Source/Code_Handout_Shared/ackerman.h",
+		"//ubuntu/keith/csce313/MP1_Source/Code_Handout_Shared/main.c",
+		"//ubuntu/keith/csce313/MP1_Source/Code_Handout_Shared/ackerman.c"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"footer",
+			"10px",
+			"search",
+			"searc",
+			"logo",
+			"search",
+			"logo",
+			"search",
+			"logo",
+			"search",
+			"secondary",
+			"search",
+			"logo",
+			"button",
+			"logo",
+			"knock",
+			"search",
+			"knock",
+			"left",
+			"search",
+			"secondary",
+			"question",
+			"secondaryHeaderPadding",
+			"secondary",
+			"sec",
+			"search",
+			"tiny",
+			"wys",
+			"wy",
+			"wysiwyg",
+			"mice",
+			"wysiwyg",
+			"wys",
+			"wis",
+			"wisywig",
+			"twitter",
+			"footer",
+			"GOT HERE",
+			"Got Here",
+			"Got",
+			"location"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"about",
+				"askbot/skins/askags/templates/about.html"
+			],
+			[
+				"seconda",
+				"askbot/skins/askags/templates/main_page/secondary_header_main.html"
+			],
+			[
+				"",
+				"askbot/skins/askags/templates/widgets/ask_button.html"
+			],
+			[
+				"intit",
+				"fixtures/initial_data.yaml"
+			],
+			[
+				"setting",
+				"settings_shared.py"
+			],
+			[
+				"edit",
+				"askbot/skins/askags/templates/widgets/edit_post.html"
+			],
+			[
+				"editor",
+				"askbot/skins/askags/templates/meta/editor_data.html"
+			],
+			[
+				"header",
+				"askbot/skins/askags/templates/widgets/header.html"
+			],
+			[
+				"urls",
+				"urls.py"
+			],
+			[
+				"askbot.urls",
+				"askbot/doc/source/devel/askbot.conf.forum_data_rules.rst"
+			],
+			[
+				"askboturl",
+				"askbot/doc/source/devel/askbot.urls.rst"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 297.0,
+	"status_bar_visible": true
+}
